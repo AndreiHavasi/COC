@@ -1,0 +1,7 @@
+package client.models.player
+
+import client.models.common.BadgeUrls
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class PlayerClan(val tag: String? = null, val clanLevel: Int = 0, val name: String? = null, val badgeUrls: BadgeUrls? = null)
