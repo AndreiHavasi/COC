@@ -19,7 +19,7 @@ class Client(private val token: String) {
 
     private fun getBaseRequest(suffix: String): Request.Builder {
         return Request.Builder()
-            .header("authorization", "Bear $token")
+            .header("Authorization", "Bearer $token")
             .url(Utils.URL + Utils.API_VERSION + suffix)
     }
 
@@ -48,7 +48,7 @@ class Client(private val token: String) {
     }
 
     @Throws(IOException::class, CocException::class)
-    fun getClans(): List<Clan> {
+    fun getClans(name: String): List<Clan> {
         val res = get("/clans")
         return deserialize<ClanList>(res).items
     }

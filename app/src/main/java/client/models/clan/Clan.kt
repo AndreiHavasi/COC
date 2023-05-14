@@ -4,7 +4,6 @@ import client.models.common.BadgeUrls
 import client.models.common.Label
 import client.models.common.Language
 import client.models.location.Location
-import client.models.enums.WarFrequency
 import client.models.warleague.WarLeague
 import kotlinx.serialization.Serializable
 
@@ -18,7 +17,7 @@ data class Clan(
     val clanVersusPoints: Int = 0,
     val tag: String? = null,
     val isWarLogPublic: Boolean = false,
-    val warFrequency: WarFrequency,
+    val warFrequency: String,
     val clanLevel: Int = 0,
     val warWinStreak: Int = 0,
     val warWins: Int = 0,
