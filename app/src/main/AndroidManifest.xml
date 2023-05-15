@@ -17,7 +17,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.CocCheck">
+            android:theme="@style/Theme.CocCheck"
+            android:windowSoftInputMode="adjustPan"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
