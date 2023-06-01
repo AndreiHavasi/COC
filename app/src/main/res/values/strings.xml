@@ -45,4 +45,17 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bad_request">Bad request. Please modify the request.</string>
+    <string name="unauthorized_request">You are not authorized to send this request.</string>
+    <string name="resource_not_found">%1$s not found.</string>
+    <string name="too_many_requests">You have sent too many requests. Please calm down.</string>
+    <string name="server_maintenance">We are sorry, the server is under maintenance.</string>
+    <string name="server_error">Server error.</string>
+
+    <string name="clan">Clan</string>
+    <string name="clans">Clans</string>
+    <string name="locations">Locations</string>
+    <string name="players">Players</string>
+
 </resources>

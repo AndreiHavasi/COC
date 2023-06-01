@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
 import client.exceptions.CocException
 import client.models.clan.Clan
 import com.example.coccheck.databinding.FragmentClansBinding
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,11 +32,28 @@ class Clans : Fragment() {
         main = (activity as MainActivity)
         binding = FragmentClansBinding.inflate(inflater, container, false)
 
-        initRecyclerView()
-        toggleLoader()
+        initUI()
         listenToSearch()
 
         return binding.root
+    }
+
+    private fun initUI() {
+        hideLoader()
+        hideErrorToast()
+        initRecyclerView()
+    }
+
+    private fun hideLoader() {
+        binding.loader.visibility = View.GONE
+    }
+
+    private fun showLoader() {
+        binding.loader.visibility = View.VISIBLE
+    }
+
+    private fun hideErrorToast() {
+        binding.toastView.errorToast.visibility = View.GONE
     }
 
     private fun initRecyclerView() {
@@ -42,17 +61,13 @@ class Clans : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
-    private fun toggleLoader() {
-        if(binding.loader.visibility == View.VISIBLE) binding.loader.visibility = View.GONE
-        else binding.loader.visibility = View.VISIBLE
-    }
-
     private fun listenToSearch() {
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query == null) return false
 
-                toggleLoader()
+                showLoader()
+                Log.d("QUERY", query)
                 lifecycleScope.launch {
                     getClan(query)
                 }
@@ -71,25 +86,51 @@ class Clans : Fragment() {
             main.client.getClan(query)
         }
         catch (e: CocException) {
-            e.message?.let { showError(it) }
+            withContext(Dispatchers.Main) {
+                hideKeyboardAndLoader()
+                e.message?.let { showError(it) }
+            }
             null
         }
-
+        hideKeyboardAndLoader()
         clan?.name?.let { Log.d("CLAN NAME", it) }
-        withContext(Dispatchers.Main) {
-            toggleLoader()
-            binding.root.hideKeyboard()
-        }
+    }
+
+    private fun hideKeyboardAndLoader() {
+        binding.root.hideKeyboard()
+        hideLoader()
     }
 
     private suspend fun showError(message: String) {
-        Log.d("EXCEPTION MESSAGE", message)
-        withContext(Dispatchers.Main) { presentToast(message) }
+        Log.d("ERROR MESSAGE", message)
+        presentToast(message)
     }
 
-    private fun presentToast(message: String) {
-        val toast: Toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
-        toast.show()
+    private suspend fun presentToast(message: String) {
+        val toastMessage: String = when(message) {
+            "400" -> resources.getString(R.string.bad_request)
+            "403" -> resources.getString(R.string.unauthorized_request)
+            "404" -> resources.getString(
+                R.string.resource_not_found,
+                resources.getString(R.string.clan)
+            )
+            "429" -> resources.getString(R.string.too_many_requests)
+            "503" -> resources.getString(R.string.server_maintenance)
+            else -> resources.getString(R.string.server_error)
+        }
+        binding.toastView.errorToastText.text = toastMessage
+        binding.toastView.errorToast.visibility = View.VISIBLE
+
+        delay(3000)
+        fadeErrorToast()
+    }
+
+    private fun fadeErrorToast() {
+        val transition = Fade()
+        transition.duration = 500
+        transition.addTarget(binding.toastView.errorToast)
+        TransitionManager.beginDelayedTransition(binding.root, transition)
+        hideErrorToast()
     }
 
     private fun View.hideKeyboard() {

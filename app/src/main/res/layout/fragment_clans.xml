@@ -27,7 +27,7 @@
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:queryHint="Search clans by tag (8 letters)"
+                app:queryHint="Search clans by tag"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
             />
@@ -56,6 +56,16 @@
             app:layout_constraintStart_toStartOf="@+id/recyclerView"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView"
         />
+
+        <include
+            layout="@layout/error_toast"
+            android:id="@+id/toastView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

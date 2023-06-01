@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Players"
+        android:title="@string/players"
         android:id="@+id/players"
         android:icon="@drawable/baseline_person_24"
     />
 
-    <item
-    android:title="Clans"
-    android:id="@+id/clans"
-    android:icon="@drawable/baseline_people_24"
+        <item
+        android:title="@string/clans"
+        android:id="@+id/clans"
+        android:icon="@drawable/baseline_people_24"
     />
 
     <item
-    android:title="Locations"
-    android:id="@+id/locations"
-    android:icon="@drawable/baseline_location_on_24"
+        android:title="@string/locations"
+        android:id="@+id/locations"
+        android:icon="@drawable/baseline_location_on_24"
     />
 </menu>
