@@ -46,6 +46,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <!-- ERROR TOAST -->
     <string name="bad_request">Bad request. Please modify the request.</string>
     <string name="unauthorized_request">You are not authorized to send this request.</string>
     <string name="resource_not_found">%1$s not found.</string>
@@ -53,9 +55,26 @@
     <string name="server_maintenance">We are sorry, the server is under maintenance.</string>
     <string name="server_error">Server error.</string>
 
-    <string name="clan">Clan</string>
+    <!-- CLAN -->
     <string name="clans">Clans</string>
+    <string name="clan">Clan</string>
+    <string name="location_label">Location:</string>
+    <string name="members_label">Members:</string>
+    <string name="points_label">Total Points:</string>
+    <string name="wars_won_label">Wars Won:</string>
+    <string name="war_frequency_label">War Frequency:</string>
+    <string name="type_label">Type:</string>
+    <string name="required_trophies_label">Required Trophies:</string>
+    <string name="name_layout_placeholder">Name</string>
+    <string name="tag_layout_placeholder">Tag</string>
+    <string name="location_layout_placeholder">United States</string>
+    <string name="members_layout_placeholder">15</string>
+    <string name="points_layout_placeholder">6027</string>
+    <string name="wars_won_layout_placeholder">137</string>
+    <string name="war_frequency_layout_placeholder">Always</string>
+    <string name="type_layout_placeholder">Closed</string>
+    <string name="required_trophies_layout_placeholder">0</string>
+
     <string name="locations">Locations</string>
     <string name="players">Players</string>
-
 </resources>

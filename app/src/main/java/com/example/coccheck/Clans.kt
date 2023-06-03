@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import client.exceptions.CocException
@@ -24,6 +23,7 @@ import kotlinx.coroutines.withContext
 class Clans : Fragment() {
     private lateinit var main: MainActivity
     private lateinit var binding: FragmentClansBinding
+    private var clan: Clan? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +39,13 @@ class Clans : Fragment() {
     }
 
     private fun initUI() {
+        hideClan()
         hideLoader()
         hideErrorToast()
-        initRecyclerView()
+    }
+
+    private fun hideClan() {
+        binding.clanView.clan.visibility = View.GONE
     }
 
     private fun hideLoader() {
@@ -54,11 +58,6 @@ class Clans : Fragment() {
 
     private fun hideErrorToast() {
         binding.toastView.errorToast.visibility = View.GONE
-    }
-
-    private fun initRecyclerView() {
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
     private fun listenToSearch() {
@@ -82,18 +81,25 @@ class Clans : Fragment() {
     }
 
     private suspend fun getClan(query: String) = withContext(Dispatchers.IO) {
-        val clan: Clan? = try {
-            main.client.getClan(query)
+        clan = try {
+            val res = main.client.getClan(query)
+            showClan(res)
+            res
         }
         catch (e: CocException) {
-            withContext(Dispatchers.Main) {
-                hideKeyboardAndLoader()
-                e.message?.let { showError(it) }
-            }
+            showError(e.message)
             null
         }
+    }
+
+    private suspend fun showError(message: String?) = withContext(Dispatchers.Main) {
         hideKeyboardAndLoader()
-        clan?.name?.let { Log.d("CLAN NAME", it) }
+        binding.clanView.clan.visibility = View.GONE
+
+        message?.let {
+            Log.d("ERROR MESSAGE", message)
+            presentToast(message)
+        }
     }
 
     private fun hideKeyboardAndLoader() {
@@ -101,9 +107,21 @@ class Clans : Fragment() {
         hideLoader()
     }
 
-    private suspend fun showError(message: String) {
-        Log.d("ERROR MESSAGE", message)
-        presentToast(message)
+    private suspend fun showClan(clan: Clan) = withContext(Dispatchers.Main) {
+        hideKeyboardAndLoader()
+
+        binding.clanView.name.text = clan.name
+        binding.clanView.tag.text = clan.tag
+        binding.clanView.location.text = clan.location?.name ?: ""
+        binding.clanView.members.text = clan.members.toString()
+        binding.clanView.points.text = clan.clanPoints.toString()
+        binding.clanView.warsWon.text = clan.warWins.toString()
+        binding.clanView.warFrequency.text = clan.warFrequency.capitalize()
+        binding.clanView.type.text = clan.type?.capitalize() ?: ""
+        binding.clanView.requiredTrophies.text = clan.requiredTrophies.toString()
+        binding.clanView.clan.visibility = View.VISIBLE
+
+        clan.name?.let { Log.d("CLAN NAME", it) }
     }
 
     private suspend fun presentToast(message: String) {
