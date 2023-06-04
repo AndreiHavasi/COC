@@ -46,6 +46,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- GENERAL -->
+    <string name="null_field">-</string>
 
     <!-- ERROR TOAST -->
     <string name="bad_request">Bad request. Please modify the request.</string>
@@ -55,9 +57,29 @@
     <string name="server_maintenance">We are sorry, the server is under maintenance.</string>
     <string name="server_error">Server error.</string>
 
+    <!-- PLAYERS -->
+    <string name="players">Players</string>
+    <string name="player">Player</string>
+    <string name="players_search_hint">Search players by tag</string>
+    <string name="townhall_label">Townhall:</string>
+    <string name="trophies_label">Trophies:</string>
+    <string name="best_trophies_label">Best trophies:</string>
+    <string name="experience_level_label">Experience level:</string>
+    <string name="clan_label">Clan:</string>
+    <string name="role_label">Role:</string>
+    <string name="war_stars_label">War stars:</string>
+    <string name="townhall_layout_placeholder">8</string>
+    <string name="trophies_layout_placeholder">4200</string>
+    <string name="best_trophies_layout_placeholder">4200</string>
+    <string name="experience_level_layout_placeholder">69</string>
+    <string name="clan_layout_placeholder">The Clan</string>
+    <string name="role_layout_placeholder">Leader</string>
+    <string name="war_stars_layout_placeholder">560</string>
+
     <!-- CLAN -->
     <string name="clans">Clans</string>
     <string name="clan">Clan</string>
+    <string name="clans_search_hint">Search clans by tag</string>
     <string name="location_label">Location:</string>
     <string name="members_label">Members:</string>
     <string name="points_label">Total Points:</string>
@@ -76,5 +98,4 @@
     <string name="required_trophies_layout_placeholder">0</string>
 
     <string name="locations">Locations</string>
-    <string name="players">Players</string>
 </resources>

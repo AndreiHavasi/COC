@@ -26,7 +26,7 @@
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:queryHint="Search clans by tag"
+                app:queryHint="@string/clans_search_hint"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
             />
