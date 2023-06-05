@@ -1,4 +1,4 @@
-package com.example.coccheck
+package com.example.coccheck.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import client.models.location.Location
+import com.example.coccheck.activities.LocationActivity
+import com.example.coccheck.activities.MainActivity
 import com.example.coccheck.adapters.LocationAdapter
 import com.example.coccheck.databinding.FragmentLocationsBinding
 import kotlinx.coroutines.Dispatchers

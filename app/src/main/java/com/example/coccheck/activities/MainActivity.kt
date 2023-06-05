@@ -1,4 +1,4 @@
-package com.example.coccheck
+package com.example.coccheck.activities
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -6,6 +6,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import client.Client
+import com.example.coccheck.fragments.Clans
+import com.example.coccheck.fragments.Locations
+import com.example.coccheck.fragments.Players
+import com.example.coccheck.R
 import com.example.coccheck.databinding.ActivityMainBinding
 
 

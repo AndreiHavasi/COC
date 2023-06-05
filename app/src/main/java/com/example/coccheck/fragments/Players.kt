@@ -1,4 +1,4 @@
-package com.example.coccheck
+package com.example.coccheck.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +12,11 @@ import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import client.exceptions.CocException
 import client.models.player.Player
+import com.example.coccheck.R
+import com.example.coccheck.activities.MainActivity
+import com.example.coccheck.capitalize
 import com.example.coccheck.databinding.FragmentPlayersBinding
+import com.example.coccheck.hideKeyboard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

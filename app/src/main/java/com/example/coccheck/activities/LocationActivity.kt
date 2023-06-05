@@ -1,18 +1,15 @@
-package com.example.coccheck
+package com.example.coccheck.activities
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import client.Client
 import client.models.clan.ClanRanking
 import com.example.coccheck.adapters.ClanRankingAdapter
-import com.example.coccheck.databinding.FragmentLocationsBinding
 import com.example.coccheck.databinding.LocationActivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
