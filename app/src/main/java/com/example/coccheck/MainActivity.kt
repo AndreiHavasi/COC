@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Clans())
+        replaceFragment(Players())
 
-        this.setClient()
-        this.listenToNavigationClick()
+        setClient()
+        listenToNavigationClick()
     }
 
     @Suppress("DEPRECATION")

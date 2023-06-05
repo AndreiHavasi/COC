@@ -5,9 +5,8 @@ import client.Utils.deserialize
 import client.Utils.formatTag
 import client.exceptions.CocException
 import client.models.clan.Clan
-import client.models.clan.ClanList
-import client.models.clan.ClanRanking
 import client.models.location.Location
+import client.models.location.LocationClanRankings
 import client.models.location.LocationList
 import client.models.player.Player
 import okhttp3.OkHttpClient
@@ -43,7 +42,7 @@ class Client(private val token: String) {
     }
 
     @Throws(IOException::class, CocException::class)
-    fun getClanRankingsByLocation(locationId: String, limit: Int): List<ClanRanking> {
+    fun getClanRankingsByLocation(locationId: String, limit: Int): LocationClanRankings {
         val res = get("/locations/$locationId/rankings/clans?limit=$limit")
         return deserialize(res)
     }

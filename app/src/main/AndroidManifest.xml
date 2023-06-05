@@ -27,6 +27,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".LocationActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CocCheck"
+            android:windowSoftInputMode="adjustPan"
+            >
+        </activity>
+
         <meta-data
             android:name="API_KEY"
             android:value="${API_KEY}"

@@ -24,9 +24,7 @@
             android:text="@string/location"
             android:textSize="16sp"
             android:padding="8dp"
-            >
-
-        </TextView>
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

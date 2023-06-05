@@ -102,4 +102,10 @@
     <string name="locations">Locations</string>
     <string name="location">Location</string>
     <string name="locations_search_hint">Find the top 10 clans in a location</string>
+    <string name="clan_level_label">Clan level:</string>
+    <string name="rank_label">Rank:</string>
+    <string name="previous_rank_label">Previous rank:</string>
+    <string name="clan_level_layout_placeholder">420</string>
+    <string name="rank_layout_placeholder">1</string>
+    <string name="previous_rank_layout_placeholder">1</string>
 </resources>

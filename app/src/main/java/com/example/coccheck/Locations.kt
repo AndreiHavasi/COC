@@ -1,5 +1,6 @@
 package com.example.coccheck
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ import kotlinx.coroutines.withContext
 class Locations : Fragment() {
     private lateinit var main: MainActivity
     private lateinit var binding: FragmentLocationsBinding
-    private var locations: ArrayList<Location>? = null
+    private lateinit var locations: ArrayList<Location>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +46,7 @@ class Locations : Fragment() {
 
                 withContext(Dispatchers.Main) {
                     hideLoader()
-                    binding.recyclerView.adapter = LocationAdapter(locations!!)
+                    initAdapter()
                 }
             }
         }
@@ -53,5 +54,18 @@ class Locations : Fragment() {
 
     private fun hideLoader() {
         binding.loader.visibility = View.GONE
+    }
+
+    private fun initAdapter() {
+        val adapter = LocationAdapter(locations)
+        adapter.setOnClickListener(object : LocationAdapter.OnClickListener {
+            override fun onItemClick(item: Location) {
+                val intent = Intent(main, LocationActivity::class.java)
+                intent.putExtra("locationId", item.id.toString())
+                startActivity(intent)
+            }
+        })
+
+        binding.recyclerView.adapter = adapter
     }
 }

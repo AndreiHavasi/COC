@@ -9,6 +9,8 @@ import client.models.location.Location
 import com.example.coccheck.R
 
 class LocationAdapter(private val locations: ArrayList<Location>): RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {
+    private lateinit var listener: OnClickListener
+
     class LocationViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.locationName)
     }
@@ -18,9 +20,20 @@ class LocationAdapter(private val locations: ArrayList<Location>): RecyclerView.
         return LocationViewHolder(view)
     }
 
-    override fun getItemCount(): Int = locations.size
-
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
-        holder.name.text = locations[position].name
+        val item = locations[position]
+
+        holder.name.text = item.name
+        holder.itemView.setOnClickListener{ listener.onItemClick(item) }
     }
+
+    fun setOnClickListener(listener: OnClickListener) {
+        this.listener = listener
+    }
+
+    interface OnClickListener {
+        fun onItemClick(item: Location)
+    }
+
+    override fun getItemCount(): Int = locations.size
 }
