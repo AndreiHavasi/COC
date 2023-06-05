@@ -6,6 +6,7 @@ import client.Utils.formatTag
 import client.exceptions.CocException
 import client.models.clan.Clan
 import client.models.clan.ClanList
+import client.models.clan.ClanRanking
 import client.models.location.Location
 import client.models.location.LocationList
 import client.models.player.Player
@@ -42,15 +43,9 @@ class Client(private val token: String) {
     }
 
     @Throws(IOException::class, CocException::class)
-    fun getLocation(locationId: String): Location {
-        val res = get("/locations/$locationId")
+    fun getClanRankingsByLocation(locationId: String, limit: Int): List<ClanRanking> {
+        val res = get("/locations/$locationId/rankings/clans?limit=$limit")
         return deserialize(res)
-    }
-
-    @Throws(IOException::class, CocException::class)
-    fun getClans(name: String): List<Clan> {
-        val res = get("/clans")
-        return deserialize<ClanList>(res).items
     }
 
     @Throws(IOException::class, CocException::class)

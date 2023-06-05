@@ -56,6 +56,7 @@
     <string name="too_many_requests">You have sent too many requests. Please calm down.</string>
     <string name="server_maintenance">We are sorry, the server is under maintenance.</string>
     <string name="server_error">Server error.</string>
+    <string name="error_toast_layout_placeholder">Something is wrong. I can feel it.</string>
 
     <!-- PLAYERS -->
     <string name="players">Players</string>
@@ -97,5 +98,8 @@
     <string name="type_layout_placeholder">Closed</string>
     <string name="required_trophies_layout_placeholder">0</string>
 
+    <!-- LOCATION -->
     <string name="locations">Locations</string>
+    <string name="location">Location</string>
+    <string name="locations_search_hint">Find the top 10 clans in a location</string>
 </resources>
