@@ -12,31 +12,23 @@ import client.models.location.Location
 import client.models.location.LocationClanRankings
 import client.models.location.LocationList
 import client.models.player.Player
+import helpers.SingletonHolder
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
-open class Client(private val token: String) {
+@Suppress("DEPRECATION")
+class Client private constructor(context: Context) {
     private val http: OkHttpClient = OkHttpClient()
+    private val token: String;
 
-    companion object {
-        @Volatile
-        private var INSTANCE: Client ?= null
-
-        @Suppress("DEPRECATION")
-        fun getClient(context: Context): Client {
-            return INSTANCE ?: synchronized(this) {
-                val applicationInfo: ApplicationInfo = context.packageManager
-                    .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-                val apiKey = applicationInfo.metaData["API_KEY"] as String
-                val instance = Client(apiKey)
-
-                INSTANCE = instance
-                instance
-            }
-        }
+    init {
+        val applicationInfo: ApplicationInfo = context.packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
+        token = applicationInfo.metaData["API_KEY"] as String
     }
+
+    companion object : SingletonHolder<Client, Context>(::Client)
 
     private fun getBaseRequest(suffix: String): Request.Builder {
         return Request.Builder()
