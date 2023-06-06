@@ -1,5 +1,8 @@
 package client
 
+import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import client.Utils.checkResponse
 import client.Utils.deserialize
 import client.Utils.formatTag
@@ -14,8 +17,26 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
-class Client(private val token: String) {
+open class Client(private val token: String) {
     private val http: OkHttpClient = OkHttpClient()
+
+    companion object {
+        @Volatile
+        private var INSTANCE: Client ?= null
+
+        @Suppress("DEPRECATION")
+        fun getClient(context: Context): Client {
+            return INSTANCE ?: synchronized(this) {
+                val applicationInfo: ApplicationInfo = context.packageManager
+                    .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
+                val apiKey = applicationInfo.metaData["API_KEY"] as String
+                val instance = Client(apiKey)
+
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
 
     private fun getBaseRequest(suffix: String): Request.Builder {
         return Request.Builder()

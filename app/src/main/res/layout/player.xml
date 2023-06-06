@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/player"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    >
+    android:padding="24dp">
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="24sp"
         android:textStyle="bold"
-        />
+        tools:text="Name"
+    />
 
     <TextView
         android:id="@+id/tag"
@@ -21,10 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_below="@id/name"
-        android:text="@string/tag_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
-        />
+        tools:text="Tag"
+    />
 
     <TextView
         android:id="@+id/townhallLabel"
@@ -43,11 +44,11 @@
         android:layout_below="@id/tag"
         android:layout_toEndOf="@id/townhallLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/townhall_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="8"
+    />
 
     <TextView
         android:id="@+id/trophiesLabel"
@@ -58,7 +59,7 @@
         android:text="@string/trophies_label"
         android:textColor="@color/text_black"
         android:textSize="16sp"
-        />
+    />
     <TextView
         android:id="@+id/trophies"
         android:layout_width="wrap_content"
@@ -66,11 +67,11 @@
         android:layout_below="@id/townhallLabel"
         android:layout_toEndOf="@id/trophiesLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/trophies_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="4200"
+    />
 
     <TextView
         android:id="@+id/bestTrophiesLabel"
@@ -89,11 +90,11 @@
         android:layout_below="@id/trophiesLabel"
         android:layout_toEndOf="@id/bestTrophiesLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/best_trophies_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="4200"
+    />
 
     <TextView
         android:id="@+id/experienceLevelLabel"
@@ -112,11 +113,11 @@
         android:layout_below="@id/bestTrophiesLabel"
         android:layout_toEndOf="@id/experienceLevelLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/experience_level_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="69"
+    />
 
     <TextView
         android:id="@+id/clanLabel"
@@ -127,7 +128,7 @@
         android:text="@string/clan_label"
         android:textColor="@color/text_black"
         android:textSize="16sp"
-        />
+    />
     <TextView
         android:id="@+id/clan"
         android:layout_width="wrap_content"
@@ -135,11 +136,11 @@
         android:layout_below="@id/experienceLevelLabel"
         android:layout_toEndOf="@id/clanLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/clan_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="The Clan"
+    />
 
     <TextView
         android:id="@+id/roleLabel"
@@ -158,11 +159,11 @@
         android:layout_below="@id/clanLabel"
         android:layout_toEndOf="@id/roleLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/role_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="Leader"
+    />
 
     <TextView
         android:id="@+id/warStarsLabel"
@@ -173,7 +174,7 @@
         android:text="@string/war_stars_label"
         android:textColor="@color/text_black"
         android:textSize="16sp"
-        />
+    />
     <TextView
         android:id="@+id/warStars"
         android:layout_width="wrap_content"
@@ -181,9 +182,9 @@
         android:layout_below="@id/roleLabel"
         android:layout_toEndOf="@id/warStarsLabel"
         android:layout_marginStart="4dp"
-        android:text="@string/war_stars_layout_placeholder"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        />
+        tools:text="560"
+    />
 </RelativeLayout>

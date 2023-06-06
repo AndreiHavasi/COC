@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -18,10 +19,10 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/name_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="24sp"
             android:textStyle="bold"
+            tools:text="Name"
         />
 
         <TextView
@@ -30,9 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:layout_below="@id/name"
-            android:text="@string/tag_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="16sp"
+            tools:text="Tag"
         />
 
         <TextView
@@ -52,10 +53,10 @@
             android:layout_below="@id/tag"
             android:layout_toEndOf="@id/clanLevelLabel"
             android:layout_marginStart="4dp"
-            android:text="@string/clan_level_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
+            tools:text="420"
         />
 
         <TextView
@@ -75,10 +76,10 @@
             android:layout_below="@id/clanLevelLabel"
             android:layout_toEndOf="@id/membersLabel"
             android:layout_marginStart="4dp"
-            android:text="@string/members_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
+            tools:text="15"
         />
 
         <TextView
@@ -98,10 +99,10 @@
             android:layout_below="@id/membersLabel"
             android:layout_toEndOf="@id/clanPointsLabel"
             android:layout_marginStart="4dp"
-            android:text="@string/points_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
+            tools:text="6027"
         />
 
         <TextView
@@ -121,10 +122,10 @@
             android:layout_below="@id/clanPointsLabel"
             android:layout_toEndOf="@id/rankLabel"
             android:layout_marginStart="4dp"
-            android:text="@string/rank_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
+            tools:text="1"
         />
 
         <TextView
@@ -144,10 +145,10 @@
             android:layout_below="@id/rankLabel"
             android:layout_toEndOf="@id/previousRankLabel"
             android:layout_marginStart="4dp"
-            android:text="@string/previous_rank_layout_placeholder"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             android:textStyle="bold"
+            tools:text="1"
         />
     </RelativeLayout>
 

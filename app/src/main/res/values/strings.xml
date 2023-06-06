@@ -56,7 +56,6 @@
     <string name="too_many_requests">You have sent too many requests. Please calm down.</string>
     <string name="server_maintenance">We are sorry, the server is under maintenance.</string>
     <string name="server_error">Server error.</string>
-    <string name="error_toast_layout_placeholder">Something is wrong. I can feel it.</string>
 
     <!-- PLAYERS -->
     <string name="players">Players</string>
@@ -69,13 +68,6 @@
     <string name="clan_label">Clan:</string>
     <string name="role_label">Role:</string>
     <string name="war_stars_label">War stars:</string>
-    <string name="townhall_layout_placeholder">8</string>
-    <string name="trophies_layout_placeholder">4200</string>
-    <string name="best_trophies_layout_placeholder">4200</string>
-    <string name="experience_level_layout_placeholder">69</string>
-    <string name="clan_layout_placeholder">The Clan</string>
-    <string name="role_layout_placeholder">Leader</string>
-    <string name="war_stars_layout_placeholder">560</string>
 
     <!-- CLAN -->
     <string name="clans">Clans</string>
@@ -88,15 +80,6 @@
     <string name="war_frequency_label">War Frequency:</string>
     <string name="type_label">Type:</string>
     <string name="required_trophies_label">Required Trophies:</string>
-    <string name="name_layout_placeholder">Name</string>
-    <string name="tag_layout_placeholder">Tag</string>
-    <string name="location_layout_placeholder">United States</string>
-    <string name="members_layout_placeholder">15</string>
-    <string name="points_layout_placeholder">6027</string>
-    <string name="wars_won_layout_placeholder">137</string>
-    <string name="war_frequency_layout_placeholder">Always</string>
-    <string name="type_layout_placeholder">Closed</string>
-    <string name="required_trophies_layout_placeholder">0</string>
 
     <!-- LOCATION -->
     <string name="locations">Locations</string>
@@ -105,7 +88,4 @@
     <string name="clan_level_label">Clan level:</string>
     <string name="rank_label">Rank:</string>
     <string name="previous_rank_label">Previous rank:</string>
-    <string name="clan_level_layout_placeholder">420</string>
-    <string name="rank_layout_placeholder">1</string>
-    <string name="previous_rank_layout_placeholder">1</string>
 </resources>

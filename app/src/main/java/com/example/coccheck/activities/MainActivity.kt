@@ -1,11 +1,10 @@
 package com.example.coccheck.activities
 
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import client.Client
+import com.example.coccheck.CocApplication
 import com.example.coccheck.fragments.Clans
 import com.example.coccheck.fragments.Locations
 import com.example.coccheck.fragments.Players
@@ -15,7 +14,7 @@ import com.example.coccheck.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    lateinit var client: Client
+    val client: Client by lazy {(application as CocApplication).client }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,16 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(Players())
 
-        setClient()
         listenToNavigationClick()
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setClient() {
-        val applicationInfo: ApplicationInfo = application.packageManager
-            .getApplicationInfo(application.packageName, PackageManager.GET_META_DATA)
-        val apiKey = applicationInfo.metaData["API_KEY"] as String
-        client = Client(apiKey)
     }
 
     private fun listenToNavigationClick() {
