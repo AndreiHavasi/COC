@@ -15,6 +15,7 @@ import com.example.coccheck.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val client: Client by lazy {(application as CocApplication).client }
+    val clanRepository by lazy {(application as CocApplication).clanRepository }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -15,6 +15,6 @@ interface ClanDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(clanEntity: ClanEntity)
 
-    @Query("DELETE FROM clan_table WHERE name = :name")
-    suspend fun delete(name: String)
+    @Query("DELETE FROM clan_table WHERE tag = :clanTag")
+    suspend fun delete(clanTag: String)
 }

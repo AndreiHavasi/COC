@@ -21,7 +21,7 @@ import java.io.IOException
 @Suppress("DEPRECATION")
 class Client private constructor(context: Context) {
     private val http: OkHttpClient = OkHttpClient()
-    private val token: String;
+    private val token: String
 
     init {
         val applicationInfo: ApplicationInfo = context.packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)

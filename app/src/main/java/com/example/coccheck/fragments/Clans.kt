@@ -17,15 +17,19 @@ import com.example.coccheck.activities.MainActivity
 import com.example.coccheck.capitalize
 import com.example.coccheck.databinding.FragmentClansBinding
 import com.example.coccheck.hideKeyboard
+import db.adapters.ClanEntityAdapter
+import db.entities.ClanEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 class Clans : Fragment() {
     private lateinit var main: MainActivity
     private lateinit var binding: FragmentClansBinding
     private var clan: Clan? = null
+    private lateinit var favoriteClans: List<ClanEntity>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +38,21 @@ class Clans : Fragment() {
         main = (activity as MainActivity)
         binding = FragmentClansBinding.inflate(inflater, container, false)
 
+        getFavoriteClans()
         initUI()
         listenToSearch()
 
         return binding.root
+    }
+
+    private fun getFavoriteClans() {
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO)  {
+                main.clanRepository.clans.collect {
+                    favoriteClans = it
+                }
+            }
+        }
     }
 
     private fun initUI() {
@@ -123,7 +138,49 @@ class Clans : Fragment() {
         binding.clanView.requiredTrophies.text = clan.requiredTrophies.toString()
         binding.clanView.clan.visibility = View.VISIBLE
 
-        clan.name?.let { Log.d("CLAN NAME", it) }
+        if (favoriteClans.firstOrNull { it.tag == clan.tag } != null) showFavoriteIcon()
+        else showNotFavoriteIcon()
+        listenToFavoriteIcons()
+    }
+
+    private fun showFavoriteIcon() {
+        binding.clanView.favoriteIcon.visibility = View.VISIBLE
+        binding.clanView.notFavoriteIcon.visibility = View.INVISIBLE
+    }
+
+    private fun showNotFavoriteIcon() {
+        binding.clanView.favoriteIcon.visibility = View.INVISIBLE
+        binding.clanView.notFavoriteIcon.visibility = View.VISIBLE
+    }
+
+    private fun listenToFavoriteIcons() {
+        binding.clanView.notFavoriteIcon.setOnClickListener {
+            lifecycleScope.launch {
+                addClanToFavorite()
+            }
+        }
+        binding.clanView.favoriteIcon.setOnClickListener {
+            lifecycleScope.launch {
+                removeClanFromFavorite()
+            }
+        }
+    }
+
+    private suspend fun addClanToFavorite() = withContext(Dispatchers.IO)  {
+        val clanEntity = ClanEntityAdapter.adapt(clan!!)
+        main.clanRepository.insert(clanEntity)
+
+        withContext(Dispatchers.Main) {
+            showFavoriteIcon()
+        }
+    }
+
+    private suspend fun removeClanFromFavorite() = withContext(Dispatchers.IO)  {
+        main.clanRepository.delete(clan!!.tag)
+
+        withContext(Dispatchers.Main) {
+            showNotFavoriteIcon()
+        }
     }
 
     private suspend fun presentToast(message: String) {

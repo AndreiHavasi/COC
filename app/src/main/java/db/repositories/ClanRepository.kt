@@ -9,12 +9,12 @@ class ClanRepository(private val clanDao: ClanDao) {
     val clans: Flow<List<ClanEntity>> = clanDao.getClans()
 
     @WorkerThread
-    suspend fun insert(clan: ClanEntity) {
-        clanDao.insert(clan)
+    suspend fun insert(clanEntity: ClanEntity) {
+        clanDao.insert(clanEntity)
     }
 
     @WorkerThread
-    suspend fun delete(clan: ClanEntity) {
-        clanDao.delete(clan.name)
+    suspend fun delete(clanTag: String) {
+        clanDao.delete(clanTag)
     }
 }
