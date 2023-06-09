@@ -88,4 +88,7 @@
     <string name="clan_level_label">Clan level:</string>
     <string name="rank_label">Rank:</string>
     <string name="previous_rank_label">Previous rank:</string>
+
+    <!-- FAVORITES -->
+    <string name="favorites">Favorites</string>
 </resources>

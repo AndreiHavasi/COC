@@ -10,6 +10,7 @@ import com.example.coccheck.fragments.Locations
 import com.example.coccheck.fragments.Players
 import com.example.coccheck.R
 import com.example.coccheck.databinding.ActivityMainBinding
+import com.example.coccheck.fragments.Favorites
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.players -> replaceFragment(Players())
                 R.id.clans -> replaceFragment(Clans())
                 R.id.locations -> replaceFragment(Locations())
+                R.id.favorites -> replaceFragment(Favorites())
 
                 else -> {}
             }

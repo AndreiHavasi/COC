@@ -17,4 +17,10 @@
         android:id="@+id/locations"
         android:icon="@drawable/baseline_location_on_24"
     />
+
+    <item
+        android:title="@string/favorites"
+        android:id="@+id/favorites"
+        android:icon="@drawable/baseline_star_24"
+    />
 </menu>

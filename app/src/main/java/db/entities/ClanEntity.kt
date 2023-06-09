@@ -10,6 +10,7 @@ data class ClanEntity(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "tag") val tag: String,
     @ColumnInfo(name = "locationName") val locationName: String?,
+    @ColumnInfo(name = "members") val members: Int,
     @ColumnInfo(name = "points") val points: Int,
     @ColumnInfo(name = "warsWon") val warsWon: Int,
     @ColumnInfo(name = "warFrequency") val warFrequency: String,

@@ -10,6 +10,7 @@ class ClanEntityAdapter {
                 name = item.name,
                 tag = item.tag,
                 locationName = item.location?.name,
+                members = item.members,
                 points = item.clanPoints,
                 warsWon = item.warWins,
                 warFrequency = item.warFrequency,
