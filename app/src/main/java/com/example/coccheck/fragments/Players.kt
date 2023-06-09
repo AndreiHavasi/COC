@@ -17,6 +17,8 @@ import com.example.coccheck.activities.MainActivity
 import com.example.coccheck.capitalize
 import com.example.coccheck.databinding.FragmentPlayersBinding
 import com.example.coccheck.hideKeyboard
+import db.adapters.PlayerEntityAdapter
+import db.entities.PlayerEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class Players : Fragment() {
     private lateinit var main: MainActivity
     private lateinit var binding: FragmentPlayersBinding
     private var player: Player? = null
+    private lateinit var favoritePlayers: List<PlayerEntity>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +37,21 @@ class Players : Fragment() {
         main = (activity as MainActivity)
         binding = FragmentPlayersBinding.inflate(inflater, container, false)
 
+        getFavoritePlayers()
         initUI()
         listenToSearch()
 
         return binding.root
+    }
+
+    private fun getFavoritePlayers() {
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                main.playerRepository.players.collect {
+                    favoritePlayers = it
+                }
+            }
+        }
     }
 
     private fun initUI() {
@@ -123,7 +137,49 @@ class Players : Fragment() {
         binding.playerView.warStars.text = player.warStars.toString()
         binding.playerView.player.visibility = View.VISIBLE
 
-        player.name?.let { Log.d("PLAYER NAME", it) }
+        if (favoritePlayers.firstOrNull { it.tag == player.tag } != null) showFavoriteIcon()
+        else showNotFavoriteIcon()
+        listenToFavoriteIcons()
+    }
+
+    private fun showFavoriteIcon() {
+        binding.playerView.favoriteIcon.visibility = View.VISIBLE
+        binding.playerView.notFavoriteIcon.visibility = View.INVISIBLE
+    }
+
+    private fun showNotFavoriteIcon() {
+        binding.playerView.favoriteIcon.visibility = View.INVISIBLE
+        binding.playerView.notFavoriteIcon.visibility = View.VISIBLE
+    }
+
+    private fun listenToFavoriteIcons() {
+        binding.playerView.notFavoriteIcon.setOnClickListener {
+            lifecycleScope.launch {
+                addPlayerToFavorites()
+            }
+        }
+        binding.playerView.favoriteIcon.setOnClickListener {
+            lifecycleScope.launch {
+                removeClanFromFavorites()
+            }
+        }
+    }
+
+    private suspend fun addPlayerToFavorites() = withContext(Dispatchers.IO)  {
+        val playerEntity = PlayerEntityAdapter.adapt(player!!)
+        main.playerRepository.insert(playerEntity)
+
+        withContext(Dispatchers.Main) {
+            showFavoriteIcon()
+        }
+    }
+
+    private suspend fun removeClanFromFavorites() = withContext(Dispatchers.IO)  {
+        main.playerRepository.delete(player!!.tag)
+
+        withContext(Dispatchers.Main) {
+            showNotFavoriteIcon()
+        }
     }
 
     private suspend fun presentToast(message: String) {

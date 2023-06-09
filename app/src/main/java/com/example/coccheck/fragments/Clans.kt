@@ -156,17 +156,17 @@ class Clans : Fragment() {
     private fun listenToFavoriteIcons() {
         binding.clanView.notFavoriteIcon.setOnClickListener {
             lifecycleScope.launch {
-                addClanToFavorite()
+                addClanToFavorites()
             }
         }
         binding.clanView.favoriteIcon.setOnClickListener {
             lifecycleScope.launch {
-                removeClanFromFavorite()
+                removeClanFromFavorites()
             }
         }
     }
 
-    private suspend fun addClanToFavorite() = withContext(Dispatchers.IO)  {
+    private suspend fun addClanToFavorites() = withContext(Dispatchers.IO)  {
         val clanEntity = ClanEntityAdapter.adapt(clan!!)
         main.clanRepository.insert(clanEntity)
 
@@ -175,7 +175,7 @@ class Clans : Fragment() {
         }
     }
 
-    private suspend fun removeClanFromFavorite() = withContext(Dispatchers.IO)  {
+    private suspend fun removeClanFromFavorites() = withContext(Dispatchers.IO)  {
         main.clanRepository.delete(clan!!.tag)
 
         withContext(Dispatchers.Main) {

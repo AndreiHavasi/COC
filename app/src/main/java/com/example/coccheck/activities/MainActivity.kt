@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val client: Client by lazy {(application as CocApplication).client }
     val clanRepository by lazy {(application as CocApplication).clanRepository }
+    val playerRepository by lazy {(application as CocApplication).playerRepository }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

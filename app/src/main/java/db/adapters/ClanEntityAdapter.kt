@@ -9,7 +9,7 @@ class ClanEntityAdapter {
             return ClanEntity(
                 name = item.name,
                 tag = item.tag,
-                locationName = item.location?.name ?: "",
+                locationName = item.location?.name,
                 points = item.clanPoints,
                 warsWon = item.warWins,
                 warFrequency = item.warFrequency,
