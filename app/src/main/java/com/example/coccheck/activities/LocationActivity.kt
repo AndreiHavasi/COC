@@ -10,6 +10,7 @@ import client.models.clan.ClanRanking
 import com.example.coccheck.CocApplication
 import com.example.coccheck.adapters.ClanRankingAdapter
 import com.example.coccheck.databinding.LocationActivityBinding
+import com.example.coccheck.isConnectedToInternet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -39,6 +40,8 @@ class LocationActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
+                if(!isConnectedToInternet(applicationContext)) return@withContext
+
                 val res = client.getClanRankingsByLocation(locationId!!, 10)
                 clanRankings = ArrayList(res.items)
 

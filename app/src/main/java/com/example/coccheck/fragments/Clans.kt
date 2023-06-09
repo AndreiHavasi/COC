@@ -17,6 +17,7 @@ import com.example.coccheck.activities.MainActivity
 import com.example.coccheck.capitalize
 import com.example.coccheck.databinding.FragmentClansBinding
 import com.example.coccheck.hideKeyboard
+import com.example.coccheck.isConnectedToInternet
 import db.adapters.ClanEntityAdapter
 import db.entities.ClanEntity
 import kotlinx.coroutines.Dispatchers
@@ -98,6 +99,11 @@ class Clans : Fragment() {
     }
 
     private suspend fun getClan(query: String) = withContext(Dispatchers.IO) {
+        if(!isConnectedToInternet(requireContext().applicationContext)) {
+            showError("NO_CONNECTION")
+            return@withContext
+        }
+
         clan = try {
             val res = main.client.getClan(query)
             showClan(res)
@@ -193,6 +199,7 @@ class Clans : Fragment() {
             )
             "429" -> resources.getString(R.string.too_many_requests)
             "503" -> resources.getString(R.string.server_maintenance)
+            "NO_CONNECTION" -> resources.getString(R.string.no_connection)
             else -> resources.getString(R.string.server_error)
         }
         binding.toastView.errorToastText.text = toastMessage

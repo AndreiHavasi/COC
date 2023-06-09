@@ -13,6 +13,7 @@ import com.example.coccheck.activities.LocationActivity
 import com.example.coccheck.activities.MainActivity
 import com.example.coccheck.adapters.LocationAdapter
 import com.example.coccheck.databinding.FragmentLocationsBinding
+import com.example.coccheck.isConnectedToInternet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,6 +44,8 @@ class Locations : Fragment() {
     private fun getLocations() {
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
+                if(!isConnectedToInternet(requireContext().applicationContext)) return@withContext
+
                 val res = main.client.getLocations().filterNot { item -> item.name == "" }
                 locations = ArrayList(res)
 

@@ -56,6 +56,7 @@
     <string name="too_many_requests">You have sent too many requests. Please calm down.</string>
     <string name="server_maintenance">We are sorry, the server is under maintenance.</string>
     <string name="server_error">Server error.</string>
+    <string name="no_connection">You have no internet connection.</string>
 
     <!-- PLAYERS -->
     <string name="players">Players</string>

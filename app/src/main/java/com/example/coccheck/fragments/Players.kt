@@ -17,6 +17,7 @@ import com.example.coccheck.activities.MainActivity
 import com.example.coccheck.capitalize
 import com.example.coccheck.databinding.FragmentPlayersBinding
 import com.example.coccheck.hideKeyboard
+import com.example.coccheck.isConnectedToInternet
 import db.adapters.PlayerEntityAdapter
 import db.entities.PlayerEntity
 import kotlinx.coroutines.Dispatchers
@@ -97,6 +98,10 @@ class Players : Fragment() {
     }
 
     private suspend fun getPlayer(query: String) = withContext(Dispatchers.IO) {
+        if(!isConnectedToInternet(requireContext().applicationContext)) {
+            return@withContext
+        }
+
         player = try {
             val res = main.client.getPlayer(query)
             showPlayer(res)
