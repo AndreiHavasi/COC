@@ -197,6 +197,7 @@ class Players : Fragment() {
             )
             "429" -> resources.getString(R.string.too_many_requests)
             "503" -> resources.getString(R.string.server_maintenance)
+            "NO_CONNECTION" -> resources.getString(R.string.no_connection)
             else -> resources.getString(R.string.server_error)
         }
         binding.toastView.errorToastText.text = toastMessage
